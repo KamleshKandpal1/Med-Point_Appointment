@@ -44,23 +44,21 @@ const allowedOrigins = [
   process.env.CORS_ORIGIN_ADMIN,
 ];
 
-// Configure CORS with dynamic origin
 app.use(
   cors({
     origin: (origin, callback) => {
-      console.log("Request Origin:", origin); // Log the origin of the request
-      console.log("Request allowedOrigins:", allowedOrigins); // Log the origin of the request
+      console.log("Request Origin:", origin); // Debugging
       if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true); // Allow the request
+        // Allow undefined origins and valid origins
+        callback(null, true);
       } else {
-        console.error("Blocked by CORS:", origin); // Log the blocked origin
-        callback(new Error("Not allowed by CORS")); // Reject the request
+        console.error("Blocked by CORS:", origin); // Log blocked origins
+        callback(new Error("Not allowed by CORS"));
       }
     },
     credentials: true, // Allow cookies
   })
 );
-
 app.use(
   express.json({
     limit: "20kb",
