@@ -1,4 +1,4 @@
-Med-Point_Appointment
+#Med-Point_Appointment
 Med-Point_Appointment is a web application built with the MERN stack (MongoDB, Express, React, Node.js) that allows users to book medical appointments easily. This project is structured into three main folders for better organization: Backend, Frontend, and Admin. The backend is deployed on Render, and the frontend and admin panel are deployed on Vercel.
 
 Features
