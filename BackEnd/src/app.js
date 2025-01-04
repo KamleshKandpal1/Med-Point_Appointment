@@ -49,6 +49,7 @@ app.use(
   cors({
     origin: (origin, callback) => {
       console.log("Request Origin:", origin); // Log the origin of the request
+      console.log("Request allowedOrigins:", allowedOrigins); // Log the origin of the request
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true); // Allow the request
       } else {
