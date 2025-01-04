@@ -62,9 +62,11 @@ The backend has been deployed on Render. You can access it at:
 **Frontend and Admin Deployment:**
 The frontend and admin panel have been deployed on Vercel. You can access the application at:
 
-- **Frontend:**[![Frontend](https://img.shields.io/badge/Frontend-Online-blue?style=for-the-badge&logo=react&logoColor=white)](https://med-point-appointment-uuf5.vercel.app/)
+- **Frontend:**
+  [![Frontend](https://img.shields.io/badge/Frontend-Online-blue?style=for-the-badge&logo=react&logoColor=white)](https://med-point-appointment-uuf5.vercel.app/)
 
-- **Admin Panel:**[![Admin Panel](https://img.shields.io/badge/Admin%20Panel-Online-blue?style=for-the-badge&logo=react&logoColor=white)](https://med-point-appointment-9knx.vercel.app/)
+- **Admin Panel:**
+  [![Admin Panel](https://img.shields.io/badge/Admin%20Panel-Online-blue?style=for-the-badge&logo=react&logoColor=white)](https://med-point-appointment-9knx.vercel.app/)
 
 ## 🔗 Links
 
