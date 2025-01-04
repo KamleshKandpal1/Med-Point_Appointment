@@ -42,7 +42,6 @@ const app = express();
 const allowedOrigins = [
   process.env.CORS_ORIGIN_USER,
   process.env.CORS_ORIGIN_ADMIN,
-  process.env.CORS_ORIGIN_DOCTOR,
 ];
 
 // Configure CORS with dynamic origin
@@ -74,6 +73,15 @@ app.use(express.static("public"));
 app.use(cookieParser());
 
 // Import and use routes
+// import adminRoutes from "./routes/admin.routes.js";
+// import doctorRoutes from "./routes/doctor.routes.js";
+// import userRoutes from "./routes/user.routes.js";
+
+// app.use("/api/v1/admin", adminRoutes);
+// app.use("/api/v1/doctor", doctorRoutes);
+// app.use("/api/v1/user", userRoutes);
+
+// // Use the admin routes
 import adminRoutes from "./routes/admin.routes.js";
 import doctorRoutes from "./routes/doctor.routes.js";
 import userRoutes from "./routes/user.routes.js";
