@@ -1,10 +1,11 @@
 import React, { useContext, useState } from "react";
 import { AdminContext } from "../context/AdminContext";
 import axios from "axios";
-import { assets } from "../assets/assets";
 import { toast } from "react-toastify";
 import { DoctorContext } from "../context/DoctorContext";
 import { useNavigate } from "react-router-dom";
+import { FiCopy } from "react-icons/fi";
+import { BiHide, BiShow } from "react-icons/bi";
 
 const Login = () => {
   const [state, setState] = useState("Admin");
@@ -62,6 +63,20 @@ const Login = () => {
   const handleShowPassword = () => {
     setShowPassword((prev) => !prev);
   };
+
+  const [copiedField, setCopiedField] = useState(null);
+
+  const handleCopy = (text, fieldName) => {
+    navigator.clipboard.writeText(text);
+    setCopiedField(fieldName);
+    setTimeout(() => setCopiedField(null), 2000); // Clear message after 2 seconds
+  };
+
+  const [showAndHidePasswords, setShowAndHidePasswords] = useState(true);
+  const showAndHidePassword = () => {
+    setShowAndHidePasswords((prev) => !prev);
+  };
+
   return (
     <form
       action=""
@@ -94,18 +109,125 @@ const Login = () => {
               type={showPassword ? "text" : "password"}
               required
             />
-            <img
+            <button
+              type="button"
+              onMouseDown={handleShowPassword}
+              className="text-gray-500 hover:text-blue-600 text-base absolute top-4 right-3"
+            >
+              {showPassword ? <BiShow /> : <BiHide />}
+            </button>
+            {/* <img
               src={showPassword ? assets.open_eye : assets.closed_eye}
               className="absolute top-[14px] right-2 h-5 w-5 text-black cursor-pointer"
               onClick={handleShowPassword}
               aria-label="Toggle password visibility"
               alt={showPassword ? "Hide password" : "Show password"}
-            />
+            /> */}
           </div>
         </div>
+
+        {/* Show username and password */}
+        {state === "Admin" ? (
+          <div className="flex flex-col gap-2.5 w-full border border-gray-300 p-3 rounded-md shadow-xl">
+            {/* Username */}
+            <div className="flex w-full items-center font-medium text-sm">
+              <div className="flex items-center justify-between w-full">
+                <p>admin@medpoint.com</p>
+                <button
+                  type="button"
+                  onMouseDown={() =>
+                    handleCopy("admin@medpoint.com", "Username")
+                  }
+                  className="text-gray-500 hover:text-blue-600 text-base"
+                >
+                  <FiCopy />
+                </button>
+                {copiedField === "Username" && (
+                  <span className="ml-2 text-green-500 text-sm">Copied!</span>
+                )}
+              </div>
+            </div>
+            {/* Password */}
+            <div className="flex w-full items-center font-medium text-sm">
+              <div className="flex items-center justify-between w-full">
+                <p>{showAndHidePasswords ? "************" : "qwerty@001"}</p>
+                <div className="flex items-center gap-x-3">
+                  <button
+                    type="button"
+                    onMouseDown={showAndHidePassword}
+                    className="text-gray-500 hover:text-blue-600 text-base"
+                  >
+                    {showAndHidePasswords ? <BiHide /> : <BiShow />}
+                  </button>
+                  <button
+                    type="button"
+                    onMouseDown={() => handleCopy("qwerty@001", "Password")}
+                    className="text-gray-500 hover:text-blue-600 text-base"
+                  >
+                    <FiCopy />
+                  </button>
+                </div>
+                {copiedField === "Password" && (
+                  <span className="ml-2 text-green-500 text-sm">Copied!</span>
+                )}
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="flex flex-col gap-2.5 w-full border border-gray-300 p-3 rounded-md shadow-xl">
+            <p className="flex w-full items-center font-medium text-sm">
+              The password matches the username in the email.
+            </p>
+            {/* Username */}
+            <div className="flex w-full items-center font-medium text-sm">
+              <div className="flex items-center justify-between w-full">
+                <p>patrickHarris@gmail.com</p>
+                <button
+                  type="button"
+                  onMouseDown={() =>
+                    handleCopy("patrickHarris@gmail.com", "Username")
+                  }
+                  className="text-gray-500 hover:text-blue-600 text-base"
+                >
+                  <FiCopy />
+                </button>
+                {copiedField === "Username" && (
+                  <span className="ml-2 text-green-500 text-sm">Copied!</span>
+                )}
+              </div>
+            </div>
+            {/* Password */}
+            <div className="flex w-full items-center font-medium text-sm">
+              <div className="flex items-center justify-between w-full">
+                <p>{showAndHidePasswords ? "************" : "patrickHarris"}</p>
+                <div className="flex items-center gap-x-3">
+                  <button
+                    type="button"
+                    onMouseDown={showAndHidePassword}
+                    className="text-gray-500 hover:text-blue-600 text-base"
+                  >
+                    {showAndHidePasswords ? <BiHide /> : <BiShow />}
+                  </button>
+                  <button
+                    type="button"
+                    onMouseDown={() => handleCopy("patrickHarris", "Password")}
+                    className="text-gray-500 hover:text-blue-600 text-base"
+                  >
+                    <FiCopy />
+                  </button>
+                </div>
+                {copiedField === "Password" && (
+                  <span className="ml-2 text-green-500 text-sm">Copied!</span>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
         <button className="bg-primary text-white w-full py-2 rounded-md text-base">
           Login
         </button>
+
         {state === "Admin" ? (
           <p>
             Doctor Login?{" "}
