@@ -32,3 +32,24 @@ app.use("/api/v1/doctor", doctorRoutes);
 app.use("/api/v1/user", userRoutes);
 
 export { app };
+
+// const allowedOrigins = [
+//   process.env.CORS_ORIGIN_USER,
+//   process.env.CORS_ORIGIN_ADMIN,
+// ];
+
+// app.use(
+//   cors({
+//     origin: (origin, callback) => {
+//       console.log("Request Origin:", origin); // Debugging
+//       if (!origin || allowedOrigins.includes(origin)) {
+//         // Allow undefined origins and valid origins
+//         callback(null, true);
+//       } else {
+//         console.error("Blocked by CORS:", origin); // Log blocked origins
+//         callback(new Error("Not allowed by CORS"));
+//       }
+//     },
+//     credentials: true, // Allow cookies
+//   })
+// );
